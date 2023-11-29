@@ -1,7 +1,7 @@
 #!/bin/bash
 
 parameter_is_missing () {
-  echo "Ошибка: Отсутствуют параметры"
+  echo "Ошибка: Отсутствует параметр"
   exit 1
 }
 
