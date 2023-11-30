@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ./colors.sh
-
 get_timezone () {
   local tmp_1=$(timedatectl | awk '/Time zone:/ {print $3}')
   local tmp_2=$(timedatectl | awk '/Universal time:/ {print $6}')
@@ -52,27 +50,28 @@ get_ram_free () {
 }
 
 get_space_root () {
-  local tmp_1=$(df | awk 'NR==2 {printf "%.2f", $2 / 1024} ')
+  local tmp_1=$(df -BK / | awk 'NR==2 {printf "%.2f", $2 / 1024} ')
   local tmp_2="Mb"
   local result="$tmp_1 $tmp_2"
   echo "$result"
 }
 
 get_space_root_used () {
-  local tmp_1=$(df | awk 'NR==2 {printf "%.2f", $3 / 1024} ')
+  local tmp_1=$(df -BK / | awk 'NR==2 {printf "%.2f", $3 / 1024} ')
   local tmp_2="Mb"
   local result="$tmp_1 $tmp_2"
   echo "$result"
 }
 
 get_space_root_free () {
-  local tmp_1=$(df | awk 'NR==2 {printf "%.2f", $4 / 1024} ')
+  local tmp_1=$(df -BK / | awk 'NR==2 {printf "%.2f", $4 / 1024} ')
   local tmp_2="Mb"
   local result="$tmp_1 $tmp_2"
   echo "$result"
 }
 
 print_report () {
+  set_color $@
   echo -e "${column_1}HOSTNAME${reset}        = ${column_2}$HOSTNAME${reset}"
   echo -e "${column_1}TIMEZONE${reset}        = ${column_2}$TIMEZONE${reset}"
   echo -e "${column_1}USER${reset}            = ${column_2}$USER${reset}"

@@ -18,3 +18,7 @@ RAM_FREE=$(get_ram_free)
 SPACE_ROOT=$(get_space_root)
 SPACE_ROOT_USED=$(get_space_root_used)
 SPACE_ROOT_FREE=$(get_space_root_free)
+
+reset="\033[0m"
+column_1=""
+column_2=""
