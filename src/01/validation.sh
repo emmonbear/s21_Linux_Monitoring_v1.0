@@ -1,17 +1,15 @@
 #!/bin/bash
 
-source ./error_messages.sh
-
 validation () {
   local error_code=0
   if [ $# -eq 0 ]; then
-    parameter_is_missing
+    echo "Ошибка: Отсутствует параметр"
     error_code=1
   elif [ $# -eq 1 ]; then
     validation_text $1
     error_code=$?
   else
-    many_parameters
+    echo "Ошибка: Задано более 1 параметра"
     error_code=1
   fi
   return $error_code
@@ -22,7 +20,7 @@ validation_text () {
   if [[ $1 =~ ^[a-zA-Z]+$ ]]; then
     error_code=0
   else
-    invalid_parameter
+    echo "Ошибка: Некорректный параметр. Введите текст"
     error_code=1
   fi
   return $error_code
