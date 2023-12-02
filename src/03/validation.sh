@@ -15,7 +15,9 @@ validation () {
     error_code=1
   else
     patameter_is_not_number $@
-    if [ $1 -eq $2 ] || [ $3 -eq $4 ]; then
+    if [ $? -eq 1 ]; then
+      error_code=1
+    elif [ $1 -eq $2 ] || [ $3 -eq $4 ]; then
       colors_is_match
       error_code=1
     elif [ $# -eq 4 ]; then
@@ -38,11 +40,12 @@ validation () {
 }
 
 patameter_is_not_number () {
+  local error_code=0
   for arg in "$@"; do
     if ! [[ $arg =~ ^[0-9]+$ ]]; then
-      echo "Ошибка: Параметр задан не числом"
-      echo "Попробуйте еще раз указать 4 параметра"
-      exit 1
+      echo "Ошибка: параметр задан не числом"
+      error_code=1
     fi
   done
+  return $error_code
 }

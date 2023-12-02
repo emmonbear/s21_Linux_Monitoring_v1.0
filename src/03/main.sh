@@ -1,11 +1,9 @@
 #!/bin/bash
 
-source ./variables.sh
-source ./validation.sh
-source ./colors.sh
 answer_1=0
 count=0
 while [ 1 ]; do
+  source ./validation.sh
   if [ $count -eq 0 ]; then
     validation $@
   else
@@ -21,9 +19,11 @@ while [ 1 ]; do
       break
     fi
   elif [ $count -ne 0 ]; then
+    source ./colors.sh 
     print_report $answer_1
     break
   else
+    source ./colors.sh 
     print_report $@
     break
   fi

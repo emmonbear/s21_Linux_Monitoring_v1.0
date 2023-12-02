@@ -50,21 +50,22 @@ get_ram_free () {
 }
 
 get_space_root () {
-  local tmp_1=$(df | awk 'NR==2 {printf "%.2f", $2 / 1024} ')
+  local tmp_1=$(df -BK / | awk 'NR==2 {printf "%.2f", $2 / 1024} ')
   local tmp_2="Mb"
   local result="$tmp_1 $tmp_2"
   echo "$result"
 }
 
 get_space_root_used () {
-  local tmp_1=$(df | awk 'NR==2 {printf "%.2f", $3 / 1024} ')
+  local tmp_1=$(df -BK / | awk 'NR==2 {printf "%.2f", $3 / 1024} ')
   local tmp_2="Mb"
   local result="$tmp_1 $tmp_2"
   echo "$result"
 }
 
 get_space_root_free () {
-  local tmp_1=$(df | awk 'NR==2 {printf "%.2f", $4 / 1024} ')
+  local tmp_1=$(df -BK / | awk 'NR==2 {printf "%.2f", $4 / 1024} ')
+  local tmp_1=$(df -BK / | awk 'NR==2 {printf "%.2f", $4 / 1024} ')
   local tmp_2="Mb"
   local result="$tmp_1 $tmp_2"
   echo "$result"

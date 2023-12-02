@@ -1,5 +1,7 @@
 #!/bin/bash
+
 source ./variables.sh
+
 set_color () {
   local background_white="47"
   local background_red="41"
