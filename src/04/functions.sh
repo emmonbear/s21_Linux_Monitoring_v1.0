@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# source ./colors.sh
-
 get_timezone () {
   local tmp_1=$(timedatectl | awk '/Time zone:/ {print $3}')
   local tmp_2=$(timedatectl | awk '/Universal time:/ {print $6}')
@@ -101,13 +99,13 @@ print_color_scheme () {
 
 get_color_name () {
   case $1 in
-    0) echo "default (yellow)";;
+    0) echo "default (light blue)";;
     1) echo "(white)";;
     2) echo "(red)";;
     3) echo "(green)";;
     4) echo "(blue)";;
     5) echo "(purple)";;
     6) echo "(black)";;
-    7) echo "default (light blue)";;
+    7) echo "default (yellow)";;
   esac
 }
